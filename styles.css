@@ -71,7 +71,7 @@ img {
 }
 
 ul {
-    
+
     list-style: none;
 }
 
@@ -176,7 +176,7 @@ ul {
 }
 
 .nav-list {
-    
+
     display: flex;
     gap: 30px;
 }
@@ -413,6 +413,7 @@ textarea {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: transform 0.3s, box-shadow 0.3s;
+    height: 450px;
 }
 
 .product-card:hover {
@@ -441,7 +442,8 @@ textarea {
 }
 
 .product-info h3 {
-    font-size: 1.2rem;
+
+    font-size: 1rem;
     margin-bottom: 10px;
 }
 
@@ -463,8 +465,14 @@ textarea {
     font-size: 0.9rem;
     margin-bottom: 15px;
     display: -webkit-box;
-
+    display: -moz-box;
+    display: box;
+    -webkit-line-clamp: 2;
+    -moz-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
     overflow: hidden;
 }
 
@@ -505,7 +513,7 @@ textarea {
     max-width: 900px;
     margin: 50px auto;
     border-radius: 15px;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
     animation: modalFadeIn 0.3s ease;
 }
@@ -891,7 +899,7 @@ textarea {
     }
 
     .nav {
-        
+
         position: fixed;
         top: 80px;
         left: -100%;
