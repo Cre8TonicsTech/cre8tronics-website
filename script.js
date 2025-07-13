@@ -339,45 +339,75 @@ window.addEventListener('scroll', () => {
         }
     });
 });
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('productSearch');
-    const productGrid = document.getElementById('productGrid');
-    const productCards = productGrid.querySelectorAll('.product-card');
+ddocument.addEventListener('DOMContentLoaded', function() {
+  // 1. Get elements (using your HTML structure)
+  const searchInput = document.getElementById('productSearch');
+  const productGrid = document.querySelector('.product-grid'); // Changed to class selector
+  
+  if (!searchInput) {
+    console.error("Search input missing! Needs id='productSearch'");
+    return;
+  }
 
-    // Real-time search
-    searchInput.addEventListener('input', function () {
-        const searchTerm = this.value.toLowerCase();
+  // 2. Debounce function (300ms delay after typing stops)
+  let searchTimeout;
+  function debounceSearch() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(performSearch, 300);
+  }
 
-        productCards.forEach(card => {
-            const productName = card.querySelector('h3').textContent.toLowerCase();
-            const productDesc = card.querySelector('.product-description').textContent.toLowerCase();
+  // 3. Main search function
+  function performSearch() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const productCards = document.querySelectorAll('.product-card'); // Dynamic query
+    let hasResults = false;
 
-            if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+    productCards.forEach(card => {
+      const name = card.querySelector('h3')?.textContent.toLowerCase() || "";
+      const desc = card.querySelector('.product-description')?.textContent.toLowerCase() || "";
+      const isVisible = searchTerm === '' || name.includes(searchTerm) || desc.includes(searchTerm);
+      
+      card.style.display = isVisible ? 'block' : 'none';
+      if (isVisible) hasResults = true;
     });
+
+    // 4. No results message
+    const noResultsMsg = document.querySelector('.no-results');
+    if (!hasResults && searchTerm) {
+      if (!noResultsMsg) {
+        const msg = document.createElement('p');
+        msg.className = 'no-results';
+        msg.textContent = 'No products found';
+        productGrid.appendChild(msg);
+      }
+    } else if (noResultsMsg) {
+      noResultsMsg.remove();
+    }
+  }
+
+  // 5. Event listeners
+  searchInput.addEventListener('input', debounceSearch);
+  document.querySelector('.search-box button')?.addEventListener('click', performSearch);
 });
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('productSearch');
-    const productGrid = document.getElementById('productGrid');
-    const productCards = productGrid.querySelectorAll('.product-card');
+// Lightbox functionality
+document.querySelectorAll('.product-image img').forEach(img => {
+  img.addEventListener('click', function() {
+    document.querySelector('.lightbox-img').src = this.src;
+    document.querySelector('.lightbox').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  });
+});
 
-    // Real-time search
-    searchInput.addEventListener('input', function () {
-        const searchTerm = this.value.toLowerCase();
+// Close lightbox
+document.querySelector('.close-btn').addEventListener('click', function() {
+  document.querySelector('.lightbox').style.display = 'none';
+  document.body.style.overflow = 'auto';
+});
 
-        productCards.forEach(card => {
-            const productName = card.querySelector('h3').textContent.toLowerCase();
-            const productDesc = card.querySelector('.product-description').textContent.toLowerCase();
-
-            if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
+// Close when clicking outside image
+document.querySelector('.lightbox').addEventListener('click', function(e) {
+  if (e.target === this) {
+    this.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
 });
