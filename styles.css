@@ -476,6 +476,13 @@ textarea {
     overflow: hidden;
 }
 
+.modal-product-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
 .product-footer {
     display: flex;
     justify-content: space-between;
