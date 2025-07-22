@@ -149,7 +149,7 @@ ul {
     padding: 20px 0;
     transition: var(--transition);
     backdrop-filter: blur(17px);
-    background-color: #212529;
+    background: var(--glass-border);
     border-bottom: 1px solid var(--glass-border);
 }
 
@@ -165,7 +165,7 @@ ul {
     color: transparent;
     font-size: 3rem;
     font-weight: 700;
-    color:white;
+    color:var(--dark-color);
 }
 
 .logo span {
@@ -182,7 +182,6 @@ ul {
 }
 
 .nav-link {
-    color: #f5f7ff;
     position: relative;
     font-weight: 500;
     padding: 5px 0;
