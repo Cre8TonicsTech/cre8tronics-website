@@ -146,9 +146,9 @@ ul {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 0;
+    padding: 13px 10px;
     transition: var(--transition);
-    backdrop-filter: blur(17px);
+    backdrop-filter: blur(30px);
     background: var(--glass-border);
     border-bottom: 1px solid var(--glass-border);
 }
@@ -163,9 +163,9 @@ ul {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-size: 3rem;
+    font-size: 3.2rem;
     font-weight: 700;
-    color:var(--dark-color);
+    color:black;
 }
 
 .logo span {
@@ -182,8 +182,10 @@ ul {
 }
 
 .nav-link {
+    color:black;
+    font-size: larger;
     position: relative;
-    font-weight: 500;
+    font-weight: 490;
     padding: 5px 0;
 }
 
@@ -230,7 +232,7 @@ ul {
     color: white;
     overflow: hidden;
     background:
-        linear-gradient(rgba(40, 98, 255, 0.15)),
+        linear-gradient(rgba(5, 1, 41, 0.15)),
         url('https://i.postimg.cc/Nj7Qsw7Y/product1.jpg') center/cover;
     animation:
         kenBurns 25s infinite alternate,
@@ -285,7 +287,7 @@ ul {
 }
 
 .hero .subheading {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     margin-bottom: 30px;
     animation: fadeInDown 1s ease 0.4s forwards;
     opacity: 0;
@@ -297,6 +299,7 @@ ul {
     justify-content: center;
     animation: fadeInUp 1s ease 0.6s forwards;
     opacity: 0;
+    font-weight: 400 ;
 }
 
 .particles {
